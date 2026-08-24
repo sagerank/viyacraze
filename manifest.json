@@ -1,0 +1,18 @@
+{
+  "name": "VIYACRAZE — Architectural Luxury Apparel",
+  "short_name": "VIYACRAZE",
+  "description": "Architectural Heavyweight Luxury. 280 GSM Organic Cotton Garments.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#040407",
+  "theme_color": "#040407",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "VIYA_logo_gold.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

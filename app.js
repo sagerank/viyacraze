@@ -377,7 +377,91 @@
     }
   };
 
-  // --- 9. Utility: Debounce ---
+  // --- 9. Editorial Lookbook Fullscreen Lightbox Controller ---
+  const lightbox = document.getElementById('lookbookLightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const mosaicItems = document.querySelectorAll('.mosaic-item');
+
+  function openLightbox(imgSrc, captionText) {
+    if (lightbox && lightboxImg && lightboxCaption) {
+      lightboxImg.src = imgSrc;
+      lightboxCaption.textContent = captionText;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeLightbox() {
+    if (lightbox) {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mosaicItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('.mosaic-caption');
+      if (img) {
+        const captionText = caption ? caption.textContent.trim() : 'VIYACRAZE Atelier Editorial';
+        openLightbox(img.src, captionText);
+      }
+    });
+  });
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+
+  // --- 10. 3D Card Gyroscope & Cursor Parallax Tilt (Desktop & Pointer Fine) ---
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const tiltElements = document.querySelectorAll('.mosaic-item, .anatomy-card, .origin-image-wrap, .pillar-card');
+
+    tiltElements.forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        el.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+      });
+
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+  }
+
+  // --- 11. Service Worker Registration (PWA & Offline Frame Cache) ---
+  if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch((err) => {
+        console.warn('SW registration skipped:', err);
+      });
+    });
+  }
+
+  // --- 12. Utility: Debounce ---
   function debounce(func, wait) {
     let timeout;
     return function (...args) {

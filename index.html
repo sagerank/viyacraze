@@ -6,6 +6,28 @@
   <title>VIYACRAZE | Architectural Heavyweight Luxury</title>
   <meta name="description" content="Experience VIYACRAZE Drop 01. Engineered 280 GSM heavyweight streetwear with architectural silhouettes and timeless craftsmanship. Available on official store.">
   
+  <!-- PWA & Mobile Web App Meta -->
+  <link rel="icon" type="image/svg+xml" href="VIYA_logo_gold.svg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#040407">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="VIYACRAZE">
+  <link rel="apple-touch-icon" href="VIYA_logo_gold.svg">
+
+  <!-- OpenGraph Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VIYACRAZE | Architectural Heavyweight Luxury">
+  <meta property="og:description" content="280 GSM Heavyweight Organic Cotton Streetwear. Engineered in the shadows, crafted for the light.">
+  <meta property="og:image" content="viyahero.jpeg">
+  <meta property="og:url" content="https://viyacraze.com">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VIYACRAZE | Architectural Heavyweight Luxury">
+  <meta name="twitter:description" content="280 GSM Heavyweight Organic Cotton Streetwear. Engineered in the shadows, crafted for the light.">
+  <meta name="twitter:image" content="viyahero.jpeg">
+  
   <!-- Premium Luxury Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -314,23 +336,28 @@
         </div>
 
         <div class="lookbook-mosaic">
-          <div class="mosaic-item large glass-liquid-card">
+          <div class="mosaic-item large glass-liquid-card" title="Click to inspect haute couture detail">
+            <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
             <img src="viyahero.jpeg" alt="VIYA 3D Embossed Sleeve Emblem" loading="lazy">
             <div class="mosaic-caption">HERO // 00 - 3D Embossed Sleeve Identity</div>
           </div>
-          <div class="mosaic-item glass-liquid-card">
+          <div class="mosaic-item glass-liquid-card" title="Click to inspect haute couture detail">
+            <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
             <img src="frames/frame_0060.webp" alt="Bioluminescent Jellyfish Model Pose" loading="lazy">
             <div class="mosaic-caption">STUDIO // 01 - Jellyfish Luminescence</div>
           </div>
-          <div class="mosaic-item glass-liquid-card">
+          <div class="mosaic-item glass-liquid-card" title="Click to inspect haute couture detail">
+            <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
             <img src="frames/frame_0120.webp" alt="Chrome Graffiti Model Pose" loading="lazy">
             <div class="mosaic-caption">STUDIO // 02 - Liquid Chrome Edition</div>
           </div>
-          <div class="mosaic-item glass-liquid-card">
+          <div class="mosaic-item glass-liquid-card" title="Click to inspect haute couture detail">
+            <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
             <img src="frames/frame_0180.webp" alt="Sacred Eye Mandala Fit" loading="lazy">
             <div class="mosaic-caption">MOTION // 03 - Sacred Eye Dress-Tee</div>
           </div>
-          <div class="mosaic-item large glass-liquid-card">
+          <div class="mosaic-item large glass-liquid-card" title="Click to inspect haute couture detail">
+            <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
             <img src="frames/frame_0240.webp" alt="Halo Climax Finale" loading="lazy">
             <div class="mosaic-caption">HALO // 04 - The Signature Climax</div>
           </div>
@@ -374,6 +401,25 @@
       <span>DROP 01 // ENTER STORE</span>
       <i class="fa-solid fa-arrow-up-right-from-square"></i>
     </a>
+  </div>
+
+  <!-- Editorial Lookbook Fullscreen Lightbox Modal -->
+  <div class="lookbook-lightbox" id="lookbookLightbox" role="dialog" aria-modal="true" aria-label="Haute Couture Detail Inspection">
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightboxClose" aria-label="Close Lightbox">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="lightbox-img-wrap">
+        <img id="lightboxImg" src="viyahero.jpeg" alt="VIYACRAZE Haute Couture Detail">
+      </div>
+      <div class="lightbox-caption-bar">
+        <span class="lightbox-caption-text" id="lightboxCaption">HERO // 00 - 3D Embossed Sleeve Identity</span>
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="lightbox-store-cta">
+          <span>Acquire Piece in Store</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
