@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIYACRAZE | Architectural Heavyweight Luxury</title>
+  <meta name="description" content="Experience VIYACRAZE Drop 01. Engineered 280 GSM heavyweight streetwear with architectural silhouettes and timeless craftsmanship. Available on official store.">
+  
+  <!-- Premium Luxury Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading page-home">
+
+  <!-- Liquid Ambient Glow Mesh Follower -->
+  <div class="liquid-ambient-mesh" id="liquidMesh"></div>
+
+  <!-- Preloader Screen -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="preloader-gold-logo">
+        <span class="logo-text wordmark">VIYACRAZE</span>
+        <span class="logo-sub">DROP 01 // ARCHITECTURAL ESSENTIALS</span>
+      </div>
+      <div class="progress-bar-container">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <div class="preloader-status">
+        <span id="loadingPercent" class="loading-percent">0%</span>
+        <span id="loadingStatusText" class="loading-status">SYNCHRONIZING 240 FRAMES</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar (Glassmorphic + Liquid Glow) -->
+  <header class="header" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-emblem-wrap">
+          <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="brand-logo-img">
+          <div class="emblem-liquid-glow"></div>
+        </div>
+        <span class="brand-name wordmark">VIYACRAZE</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">Who We Are</a>
+        <a href="contact.html" class="nav-link">Contact Us</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="store-cta-btn liquid-btn">
+          <span class="btn-text">Official Store</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <div class="btn-liquid-shine"></div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Scroll-Frame Hero Experience -->
+  <main>
+    <section id="scroll-experience" class="scroll-track-container">
+      
+      <!-- Sticky Viewport Wrapper -->
+      <div class="sticky-viewport">
+        
+        <!-- Hardware-Accelerated Canvas for Hero Image + 240 Frames -->
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+        
+        <!-- Cinematic Liquid Gradient Overlay -->
+        <div class="canvas-vignette"></div>
+
+        <!-- Frame Progress Bar on Right Side -->
+        <div class="frame-scrub-indicator">
+          <div class="indicator-track">
+            <div id="scrubThumb" class="indicator-thumb"></div>
+          </div>
+          <div class="indicator-meta">
+            <span id="currentFrameNumber">HERO</span>
+            <span class="divider">/</span>
+            <span>240</span>
+          </div>
+        </div>
+
+        <!-- Scroll Directive Indicator -->
+        <div class="scroll-directive" id="scrollDirective">
+          <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
+          </div>
+          <span>SCROLL TO EXPLORE MOTION</span>
+        </div>
+
+        <!-- Floating Story Overlays (Cinematic Lower-Third HUD) -->
+        <div class="narrative-overlay" id="narrativeOverlay">
+          
+          <!-- Card 0: 0% - 10% (Hero Sleeve Embossed Insignia) -->
+          <div class="story-card active" data-range="0-10">
+            <div class="chapter-badge">
+              <span class="live-dot"></span>
+              <span>HERO // THE SLEEVE EMBLEM</span>
+            </div>
+            <h1 class="story-title">Architectural Permanence.</h1>
+            <p class="story-desc">Precision 3D debossed VIYA geometric insignia sculpted directly into the 280 GSM heavyweight sleeve hem. High-density textile engineering.</p>
+            <div class="spec-chips">
+              <span class="spec-chip"><i class="fa-solid fa-cube"></i> 3D Debossed Emblem</span>
+              <span class="spec-chip"><i class="fa-solid fa-shield-halved"></i> 280 GSM Dense Knit</span>
+            </div>
+          </div>
+
+          <!-- Card 1: 11% - 30% (Collar Macro) -->
+          <div class="story-card" data-range="11-30">
+            <div class="chapter-badge">
+              <span class="live-dot"></span>
+              <span>01 // THE COLLAR BLUEPRINT</span>
+            </div>
+            <h2 class="story-title">The Standard is in the Seam.</h2>
+            <p class="story-desc">Custom woven VIYA neck tape embedded inside a high-recovery 2x2 ribbed collar. Engineered to eliminate bacon-neck deformation permanently.</p>
+            <div class="spec-chips">
+              <span class="spec-chip"><i class="fa-solid fa-circle-check"></i> 100% Organic Ring-Spun</span>
+              <span class="spec-chip"><i class="fa-solid fa-ribbon"></i> 2x2 Spandex Ribbed Collar</span>
+            </div>
+          </div>
+
+          <!-- Card 2: 31% - 55% (Male Model Jellyfish Graphic) -->
+          <div class="story-card" data-range="31-55">
+            <div class="chapter-badge">
+              <span class="live-dot"></span>
+              <span>02 // LUMINESCENT FORM</span>
+            </div>
+            <h2 class="story-title">Sub-Aquatic Frequency.</h2>
+            <p class="story-desc">The Bioluminescent Jellyfish edition—crafted with multi-layered high-density phosphorescent pigments on deep Onyx Noir.</p>
+            <div class="spec-chips">
+              <span class="spec-chip"><i class="fa-solid fa-droplet"></i> High-Density Pigment</span>
+              <span class="spec-chip"><i class="fa-solid fa-feather-pointed"></i> Signature Drop-Shoulder</span>
+            </div>
+          </div>
+
+          <!-- Card 3: 56% - 75% (Female Model Silver Chrome Graphic) -->
+          <div class="story-card" data-range="56-75">
+            <div class="chapter-badge">
+              <span class="live-dot"></span>
+              <span>03 // RAW CHROME EDIT</span>
+            </div>
+            <h2 class="story-title">Liquid Street Geometry.</h2>
+            <p class="story-desc">Liquid chrome metallic silkscreen printing on vintage washed Bone Off-White cotton. Rolled sleeve ergonomics designed for modern styling.</p>
+            <div class="spec-chips">
+              <span class="spec-chip"><i class="fa-solid fa-palette"></i> Metallic Screen Print</span>
+              <span class="spec-chip"><i class="fa-solid fa-maximize"></i> Relaxed Oversized Fit</span>
+            </div>
+          </div>
+
+          <!-- Card 4: 76% - 90% (Female Model Sacred Eye Mandala) -->
+          <div class="story-card" data-range="76-90">
+            <div class="chapter-badge">
+              <span class="live-dot"></span>
+              <span>04 // SACRED PERSPECTIVE</span>
+            </div>
+            <h2 class="story-title">Timeless Drape & Motion.</h2>
+            <p class="story-desc">Extended dress-tee proportion featuring the hand-detailed All-Seeing Mandala. Moves fluidly with every stride with 0% residual distortion.</p>
+            <div class="spec-chips">
+              <span class="spec-chip"><i class="fa-solid fa-arrows-spin"></i> 3-Stage Enzyme Pre-Wash</span>
+              <span class="spec-chip"><i class="fa-solid fa-wind"></i> Fluid Kinetic Drape</span>
+            </div>
+          </div>
+
+          <!-- Card 5: 91% - 100% (The Halo Hero Finish) -->
+          <div class="story-card" data-range="91-100">
+            <div class="chapter-badge">
+              <span class="live-dot"></span>
+              <span>05 // THE MANIFESTO</span>
+            </div>
+            <h2 class="story-title">VIYACRAZE DROP 01</h2>
+            <p class="story-desc">A strictly limited run of 250 individually numbered garments. Available exclusively via our verified online store.</p>
+            <div class="card-cta-group">
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="btn-primary-glow liquid-btn">
+                <span>Shop Drop on Store</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href="about.html" class="btn-secondary-glass">Who We Are</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: CAPSULE SHOWCASE (DIRECT LINK TO STORE) -->
+    <section id="collection" class="section collection-section">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <div class="section-eyebrow">DROP 01 // EXCLUSIVE CAPSULE</div>
+          <h2 class="section-title">THE ARCHITECTURAL EDITIONS</h2>
+          <p class="section-subtitle">Cut from 280 GSM heavyweight organic cotton. All orders and checkouts are fulfilled via our secure official store.</p>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="products-grid">
+          
+          <!-- Product 1 -->
+          <div class="product-card glass-liquid-card">
+            <div class="product-media">
+              <span class="badge-tag gold-badge">LIMITED 250</span>
+              <img src="frames/frame_0060.webp" alt="Bioluminescent Jellyfish Heavyweight Tee" loading="lazy">
+              <div class="product-overlay">
+                <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="quick-store-btn liquid-btn">
+                  <span>View in Store</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-color">Onyx Noir</span>
+                <span class="product-gsm">280 GSM</span>
+              </div>
+              <h3 class="product-name">Bioluminescent Jellyfish Tee</h3>
+              <div class="product-price">$85.00 <span class="tax-tag">USD / INR Available</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card glass-liquid-card">
+            <div class="product-media">
+              <span class="badge-tag gold-badge">BESTSELLER</span>
+              <img src="frames/frame_0120.webp" alt="Chrome Graffiti Oversized Tee" loading="lazy">
+              <div class="product-overlay">
+                <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="quick-store-btn liquid-btn">
+                  <span>View in Store</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-color">Bone Off-White</span>
+                <span class="product-gsm">280 GSM</span>
+              </div>
+              <h3 class="product-name">Chrome Graffiti Oversized Tee</h3>
+              <div class="product-price">$90.00 <span class="tax-tag">USD / INR Available</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card glass-liquid-card">
+            <div class="product-media">
+              <span class="badge-tag gold-badge">NEW CUT</span>
+              <img src="frames/frame_0180.webp" alt="Sacred Eye Mandala Dress-Tee" loading="lazy">
+              <div class="product-overlay">
+                <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="quick-store-btn liquid-btn">
+                  <span>View in Store</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-color">Optical White</span>
+                <span class="product-gsm">280 GSM</span>
+              </div>
+              <h3 class="product-name">Sacred Eye Mandala Dress-Tee</h3>
+              <div class="product-price">$88.00 <span class="tax-tag">USD / INR Available</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card glass-liquid-card">
+            <div class="product-media">
+              <span class="badge-tag gold-badge">FLAGSHIP</span>
+              <img src="frames/frame_0240.webp" alt="Aurora Nebula Signature Tee" loading="lazy">
+              <div class="product-overlay">
+                <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="quick-store-btn liquid-btn">
+                  <span>View in Store</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="product-color">Onyx Noir</span>
+                <span class="product-gsm">290 GSM</span>
+              </div>
+              <h3 class="product-name">Aurora Nebula Signature Tee</h3>
+              <div class="product-price">$95.00 <span class="tax-tag">USD / INR Available</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: CRAFTSMANSHIP & ANATOMY -->
+    <section id="anatomy" class="section anatomy-section">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <div class="section-eyebrow">ENGINEERING SPECIFICATIONS</div>
+          <h2 class="section-title">THE ANATOMY OF EXCELLENCE</h2>
+          <p class="section-subtitle">Every millimeter is calibrated for longevity, structural permanence, and drape.</p>
+        </div>
+
+        <div class="anatomy-grid">
+          
+          <div class="anatomy-card glass-liquid-card">
+            <div class="card-icon-wrap">
+              <i class="fa-solid fa-weight-hanging"></i>
+            </div>
+            <div class="stat-number">280</div>
+            <div class="stat-unit">GSM HEAVYWEIGHT</div>
+            <h3 class="stat-title">Architectural Drape</h3>
+            <p class="stat-desc">Substantial weight that falls effortlessly without clinging. Creates a structured, confident silhouette that flatters any build.</p>
+          </div>
+
+          <div class="anatomy-card glass-liquid-card">
+            <div class="card-icon-wrap">
+              <i class="fa-solid fa-arrows-spin"></i>
+            </div>
+            <div class="stat-number">0%</div>
+            <div class="stat-unit">RESIDUAL SHRINKAGE</div>
+            <h3 class="stat-title">Enzyme Pre-Washed</h3>
+            <p class="stat-desc">Treated through a 3-stage mechanical pre-wash. The size and drape you purchase on day one remains the same after 50 washes.</p>
+          </div>
+
+          <div class="anatomy-card glass-liquid-card">
+            <div class="card-icon-wrap">
+              <i class="fa-solid fa-ribbon"></i>
+            </div>
+            <div class="stat-number">2×2</div>
+            <div class="stat-unit">SPANDEX RIBBED COLLAR</div>
+            <h3 class="stat-title">Anti-Sag Neckline</h3>
+            <p class="stat-desc">Double-needle lockstitched ribbing with elastic recovery threads to eliminate sagging and roll-over permanently.</p>
+          </div>
+
+          <div class="anatomy-card glass-liquid-card">
+            <div class="card-icon-wrap">
+              <i class="fa-solid fa-leaf"></i>
+            </div>
+            <div class="stat-number">100%</div>
+            <div class="stat-unit">ORGANIC COMBED COTTON</div>
+            <h3 class="stat-title">Zero Synthetic Fillers</h3>
+            <p class="stat-desc">GOTS-certified long-staple cotton combed of all short fibers, ensuring an ultra-smooth hand feel with zero pilling.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: EDITORIAL LOOKBOOK -->
+    <section id="lookbook" class="section lookbook-section">
+      <div class="section-container">
+        
+        <div class="lookbook-hero">
+          <div class="lookbook-badge">LOOKBOOK // EDITION ONE</div>
+          <h2 class="lookbook-title">DESIGNED IN THE SHADOWS.<br>CRAFTED FOR THE LIGHT.</h2>
+          <p class="lookbook-desc">A continuous exploration of form, texture, and street elegance.</p>
+        </div>
+
+        <div class="lookbook-mosaic">
+          <div class="mosaic-item large glass-liquid-card">
+            <img src="viyahero.jpeg" alt="VIYA 3D Embossed Sleeve Emblem" loading="lazy">
+            <div class="mosaic-caption">HERO // 00 - 3D Embossed Sleeve Identity</div>
+          </div>
+          <div class="mosaic-item glass-liquid-card">
+            <img src="frames/frame_0060.webp" alt="Bioluminescent Jellyfish Model Pose" loading="lazy">
+            <div class="mosaic-caption">STUDIO // 01 - Jellyfish Luminescence</div>
+          </div>
+          <div class="mosaic-item glass-liquid-card">
+            <img src="frames/frame_0120.webp" alt="Chrome Graffiti Model Pose" loading="lazy">
+            <div class="mosaic-caption">STUDIO // 02 - Liquid Chrome Edition</div>
+          </div>
+          <div class="mosaic-item glass-liquid-card">
+            <img src="frames/frame_0180.webp" alt="Sacred Eye Mandala Fit" loading="lazy">
+            <div class="mosaic-caption">MOTION // 03 - Sacred Eye Dress-Tee</div>
+          </div>
+          <div class="mosaic-item large glass-liquid-card">
+            <img src="frames/frame_0240.webp" alt="Halo Climax Finale" loading="lazy">
+            <div class="mosaic-caption">HALO // 04 - The Signature Climax</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: VIP NEWSLETTER & STORE ACCESS -->
+    <section class="section cta-section">
+      <div class="section-container cta-container">
+        <div class="cta-inner glass-liquid-card">
+          <div class="card-glow-reflection"></div>
+          <img src="VIYA_logo_gold.svg" alt="Gold Logo" class="cta-gold-logo">
+          <span class="cta-eyebrow">EXCLUSIVE ACCESS</span>
+          <h2 class="cta-heading">JOIN THE VIYACRAZE GUILD</h2>
+          <p class="cta-sub">Receive private store access codes for future drops 24 hours prior to public release. Strictly limited allocations.</p>
+          
+          <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletter(event)">
+            <input type="email" id="emailInput" placeholder="Enter your email address..." required>
+            <button type="submit" class="newsletter-btn liquid-btn">
+              <span>Request Access</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+          <div id="newsletterSuccess" class="newsletter-success">
+            <i class="fa-solid fa-circle-check"></i> VIP Confirmation sent. Welcome to VIYACRAZE.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo-wrap">
+            <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="footer-logo-img">
+            <span class="footer-logo-text wordmark">VIYACRAZE</span>
+          </div>
+          <p class="footer-tagline">Architectural heavyweight garments engineered for timeless presence.</p>
+          <div class="atelier-badge">
+            <i class="fa-solid fa-gem"></i> Verified Luxury Atelier Storefront
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>NAVIGATION</h4>
+          <ul>
+            <li><a href="index.html">Home Experience</a></li>
+            <li><a href="about.html">Who We Are</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener">Official Store ↗</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>ATELIER</h4>
+          <ul>
+            <li><a href="about.html#philosophy">Fabric Specs (280 GSM)</a></li>
+            <li><a href="about.html#process">Crafting Process</a></li>
+            <li><a href="contact.html#faq">Sizing Guide</a></li>
+            <li><a href="contact.html#support">VIP Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>CONNECT</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">© VIYACRAZE APPAREL GROUP. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal">
+          <a href="#">PRIVACY POLICY</a>
+          <a href="#">TERMS OF SERVICE</a>
+          <a href="#">ACCESSIBILITY</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>

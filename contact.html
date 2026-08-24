@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | VIYACRAZE Atelier & Client Care</title>
+  <meta name="description" content="Get in touch with the VIYACRAZE atelier for sizing assistance, bespoke order inquiries, collaborations, and official online store support.">
+  
+  <!-- Premium Luxury Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Italiana&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-contact">
+
+  <!-- Liquid Ambient Glow Mesh -->
+  <div class="liquid-ambient-mesh" id="liquidMesh"></div>
+
+  <!-- Navigation Bar -->
+  <header class="header" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-emblem-wrap">
+          <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="brand-logo-img">
+          <div class="emblem-liquid-glow"></div>
+        </div>
+        <span class="brand-name wordmark">VIYACRAZE</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Who We Are</a>
+        <a href="contact.html" class="nav-link active">Contact Us</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="store-cta-btn liquid-btn">
+          <span class="btn-text">Official Store</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <div class="btn-liquid-shine"></div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-content-wrapper">
+    
+    <!-- Hero Banner -->
+    <section class="contact-hero">
+      <div class="section-container">
+        <div class="about-hero-badge">CLIENT CONCIERGE & ATELIER</div>
+        <h1 class="about-hero-title">CONNECT WITH <span class="gold-gradient-text">VIYACRAZE</span></h1>
+        <p class="about-hero-subtitle">Whether you need bespoke sizing guidance, store order tracking, or press inquiries, our atelier is at your service.</p>
+      </div>
+    </section>
+
+    <!-- Channels & Contact Grid -->
+    <section class="section contact-section" id="support">
+      <div class="section-container contact-layout-grid">
+        
+        <!-- Left: Contact Channels -->
+        <div class="contact-channels">
+          <div class="section-eyebrow">DIRECT REACH</div>
+          <h2 class="section-title text-left">ATELIER CHANNELS</h2>
+          
+          <div class="channel-card glass-liquid-card">
+            <div class="channel-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="channel-info">
+              <span class="channel-label">General & Client Inquiries</span>
+              <a href="mailto:concierge@viyacraze.com" class="channel-link">concierge@viyacraze.com</a>
+              <span class="channel-meta">Average response time: &lt; 4 hours</span>
+            </div>
+          </div>
+
+          <div class="channel-card glass-liquid-card">
+            <div class="channel-icon gold">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="channel-info">
+              <span class="channel-label">VIP Sizing & WhatsApp Concierge</span>
+              <a href="https://wa.me/" target="_blank" rel="noopener" class="channel-link">+91 98765 43210</a>
+              <span class="channel-meta">Mon – Sat, 10:00 AM – 8:00 PM IST</span>
+            </div>
+          </div>
+
+          <div class="channel-card glass-liquid-card">
+            <div class="channel-icon">
+              <i class="fa-solid fa-store"></i>
+            </div>
+            <div class="channel-info">
+              <span class="channel-label">Official Storefront Platform</span>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="channel-link">VIYACRAZE Online Store ↗</a>
+              <span class="channel-meta">Real-time Inventory & Instant Checkout</span>
+            </div>
+          </div>
+
+          <div class="channel-card glass-liquid-card">
+            <div class="channel-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="channel-info">
+              <span class="channel-label">Design Atelier</span>
+              <p class="channel-text">VIYACRAZE Studio, High-Street Design District, Mumbai / Bangalore, India</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Inquiry Form -->
+        <div class="contact-form-wrap glass-liquid-card">
+          <div class="card-glow-reflection"></div>
+          <div class="form-header">
+            <h3 class="form-title">Send a Message</h3>
+            <p class="form-desc">Fill out the brief below and our concierge team will attend to you promptly.</p>
+          </div>
+
+          <form class="atelier-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Full Name *</label>
+                <input type="text" id="contactName" placeholder="e.g. Alex Morgan" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address *</label>
+                <input type="email" id="contactEmail" placeholder="e.g. alex@domain.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactSubject">Inquiry Nature *</label>
+              <select id="contactSubject" required>
+                <option value="sizing">Sizing & Fit Architecture Guidance</option>
+                <option value="store-order">Store Order Status / Assistance</option>
+                <option value="press">Press, Editorial & Media Inquiries</option>
+                <option value="wholesale">B2B / Wholesale & Collaborations</option>
+                <option value="other">General Inquiries</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage">Message *</label>
+              <textarea id="contactMessage" rows="5" placeholder="Detail your inquiry or requested drop specifications..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary-glow btn-block liquid-btn">
+              <span>Send Atelier Inquiry</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <div id="contactSuccessMsg" class="form-success-box">
+              <i class="fa-solid fa-circle-check"></i> Your inquiry has been routed to our concierge team. We will respond shortly.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="section faq-section" id="faq">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <div class="section-eyebrow">FREQUENTLY ASKED QUESTIONS</div>
+          <h2 class="section-title">EVERYTHING YOU NEED TO KNOW</h2>
+          <p class="section-subtitle">Clarifications regarding ordering via our official store, our 280 GSM fabric standard, sizing, and care.</p>
+        </div>
+
+        <div class="faq-accordion">
+          
+          <div class="faq-item glass-liquid-card active">
+            <button class="faq-question">
+              <span>How do I purchase VIYACRAZE garments through the official store?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>All official purchases, inventory allocations, and encrypted payment processing are managed through our verified <strong>Online Storefront</strong>. Simply click "Official Store" or on any drop card to select your size and complete your order with UPI, Credit/Debit Cards, Net Banking, or Apple Pay/GPay.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-liquid-card">
+            <button class="faq-question">
+              <span>What is the fit architecture of VIYACRAZE T-shirts?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Our T-shirts feature a tailored <strong>Architectural Drop-Shoulder Fit</strong>. They are slightly boxy through the chest and shoulders for a confident silhouette, with true-to-size length. If you prefer a standard tailored streetwear fit, order your normal size. For an exaggerated oversized skate/editorial drape, size up by one.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-liquid-card">
+            <button class="faq-question">
+              <span>What makes 280 GSM heavyweight cotton superior?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Standard retail t-shirts range from 140–180 GSM and easily lose their shape. Our 280 GSM heavyweight French terry provides substantial body, creates a clean drape without clinging, and retains crisp collar structure after countless washes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-liquid-card">
+            <button class="faq-question">
+              <span>What are the care instructions to preserve the graphic prints?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Machine wash cold (30°C or below) inside out with gentle detergent. Hang dry in shade to preserve fabric density and print vibrancy. Do not iron directly over the graphic or 3D debossed insignia.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-liquid-card">
+            <button class="faq-question">
+              <span>How are drops numbered and packaged?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Each drop is strictly restricted to 250 units globally. Every garment arrives in a matte black archival presentation box complete with a hand-numbered Certificate of Authenticity and the golden VIYA insignia seal.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo-wrap">
+            <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="footer-logo-img">
+            <span class="footer-logo-text wordmark">VIYACRAZE</span>
+          </div>
+          <p class="footer-tagline">Architectural heavyweight garments engineered for timeless presence.</p>
+          <div class="atelier-badge">
+            <i class="fa-solid fa-gem"></i> Verified Luxury Atelier Storefront
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>NAVIGATION</h4>
+          <ul>
+            <li><a href="index.html">Home Experience</a></li>
+            <li><a href="about.html">Who We Are</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener">Official Store ↗</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>ATELIER</h4>
+          <ul>
+            <li><a href="about.html#philosophy">Fabric Specs (280 GSM)</a></li>
+            <li><a href="about.html#process">Crafting Process</a></li>
+            <li><a href="contact.html#faq">Sizing Guide</a></li>
+            <li><a href="contact.html#support">VIP Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4>CONNECT</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">© VIYACRAZE APPAREL GROUP. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal">
+          <a href="#">PRIVACY POLICY</a>
+          <a href="#">TERMS OF SERVICE</a>
+          <a href="#">ACCESSIBILITY</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
