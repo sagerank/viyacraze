@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Contact Us | VIYACRAZE Atelier & Client Care</title>
   <meta name="description" content="Get in touch with the VIYACRAZE atelier for sizing assistance, bespoke order inquiries, collaborations, and official online store support.">
   
@@ -40,14 +40,63 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="store-cta-btn liquid-btn">
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="store-cta-btn liquid-btn desktop-only">
           <span class="btn-text">Official Store</span>
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
           <div class="btn-liquid-shine"></div>
         </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Fullscreen Drawer Navigation -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="brand-logo-img">
+          <span class="brand-name wordmark">VIYACRAZE</span>
+        </div>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close Navigation Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">
+          <span class="nav-num">01</span>
+          <span class="nav-title">Home Experience</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span class="nav-num">02</span>
+          <span class="nav-title">Who We Are</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="contact.html" class="mobile-nav-link active">
+          <span class="nav-num">03</span>
+          <span class="nav-title">Contact Atelier</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </nav>
+
+      <div class="mobile-drawer-footer">
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="mobile-drawer-store-btn">
+          <span>ENTER OFFICIAL STORE ↗</span>
+        </a>
+        <div class="mobile-drawer-meta">
+          <span>280 GSM ARCHITECTURAL HEAVYWEIGHT</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content -->
   <main class="page-content-wrapper">
@@ -232,6 +281,17 @@
     </section>
 
   </main>
+
+  <!-- Sticky Mobile Quick-Action Bar -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="mobile-sticky-btn">
+      <div class="btn-emblem">
+        <img src="VIYA_logo_gold.svg" alt="VIYA Emblem">
+      </div>
+      <span>DROP 01 // ENTER STORE</span>
+      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">

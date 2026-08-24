@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>VIYACRAZE | Architectural Heavyweight Luxury</title>
   <meta name="description" content="Experience VIYACRAZE Drop 01. Engineered 280 GSM heavyweight streetwear with architectural silhouettes and timeless craftsmanship. Available on official store.">
   
@@ -58,14 +58,63 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="store-cta-btn liquid-btn">
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="store-cta-btn liquid-btn desktop-only">
           <span class="btn-text">Official Store</span>
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
           <div class="btn-liquid-shine"></div>
         </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Fullscreen Drawer Navigation -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo">
+          <img src="VIYA_logo_gold.svg" alt="VIYACRAZE Emblem" class="brand-logo-img">
+          <span class="brand-name wordmark">VIYACRAZE</span>
+        </div>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close Navigation Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link active">
+          <span class="nav-num">01</span>
+          <span class="nav-title">Home Experience</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span class="nav-num">02</span>
+          <span class="nav-title">Who We Are</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="contact.html" class="mobile-nav-link">
+          <span class="nav-num">03</span>
+          <span class="nav-title">Contact Atelier</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </nav>
+
+      <div class="mobile-drawer-footer">
+        <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="mobile-drawer-store-btn">
+          <span>ENTER OFFICIAL STORE ↗</span>
+        </a>
+        <div class="mobile-drawer-meta">
+          <span>280 GSM ARCHITECTURAL HEAVYWEIGHT</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Scroll-Frame Hero Experience -->
   <main>
@@ -110,10 +159,10 @@
               <span>HERO // THE SLEEVE EMBLEM</span>
             </div>
             <h1 class="story-title">Architectural Permanence.</h1>
-            <p class="story-desc">Precision 3D debossed VIYA geometric insignia sculpted directly into the 280 GSM heavyweight sleeve hem. High-density textile engineering.</p>
+            <p class="story-desc">Precision 3D debossed VIYA geometric insignia sculpted directly into the 280 GSM heavyweight sleeve hem.</p>
             <div class="spec-chips">
-              <span class="spec-chip"><i class="fa-solid fa-cube"></i> 3D Debossed Emblem</span>
-              <span class="spec-chip"><i class="fa-solid fa-shield-halved"></i> 280 GSM Dense Knit</span>
+              <span class="spec-chip"><i class="fa-solid fa-cube"></i> 3D Debossed</span>
+              <span class="spec-chip"><i class="fa-solid fa-shield-halved"></i> 280 GSM Knit</span>
             </div>
           </div>
 
@@ -124,10 +173,10 @@
               <span>01 // THE COLLAR BLUEPRINT</span>
             </div>
             <h2 class="story-title">The Standard is in the Seam.</h2>
-            <p class="story-desc">Custom woven VIYA neck tape embedded inside a high-recovery 2x2 ribbed collar. Engineered to eliminate bacon-neck deformation permanently.</p>
+            <p class="story-desc">Custom woven VIYA neck tape embedded inside a high-recovery 2x2 ribbed collar. Zero deformation.</p>
             <div class="spec-chips">
-              <span class="spec-chip"><i class="fa-solid fa-circle-check"></i> 100% Organic Ring-Spun</span>
-              <span class="spec-chip"><i class="fa-solid fa-ribbon"></i> 2x2 Spandex Ribbed Collar</span>
+              <span class="spec-chip"><i class="fa-solid fa-circle-check"></i> 100% Organic</span>
+              <span class="spec-chip"><i class="fa-solid fa-ribbon"></i> 2x2 Spandex Rib</span>
             </div>
           </div>
 
@@ -138,10 +187,10 @@
               <span>02 // LUMINESCENT FORM</span>
             </div>
             <h2 class="story-title">Sub-Aquatic Frequency.</h2>
-            <p class="story-desc">The Bioluminescent Jellyfish edition—crafted with multi-layered high-density phosphorescent pigments on deep Onyx Noir.</p>
+            <p class="story-desc">The Bioluminescent Jellyfish edition—crafted with multi-layered high-density phosphorescent pigments on Onyx Noir.</p>
             <div class="spec-chips">
-              <span class="spec-chip"><i class="fa-solid fa-droplet"></i> High-Density Pigment</span>
-              <span class="spec-chip"><i class="fa-solid fa-feather-pointed"></i> Signature Drop-Shoulder</span>
+              <span class="spec-chip"><i class="fa-solid fa-droplet"></i> Phosphor Inks</span>
+              <span class="spec-chip"><i class="fa-solid fa-feather-pointed"></i> Drop-Shoulder</span>
             </div>
           </div>
 
@@ -152,10 +201,10 @@
               <span>03 // RAW CHROME EDIT</span>
             </div>
             <h2 class="story-title">Liquid Street Geometry.</h2>
-            <p class="story-desc">Liquid chrome metallic silkscreen printing on vintage washed Bone Off-White cotton. Rolled sleeve ergonomics designed for modern styling.</p>
+            <p class="story-desc">Liquid chrome metallic silkscreen printing on vintage washed Bone Off-White cotton. Rolled sleeve ergonomics.</p>
             <div class="spec-chips">
-              <span class="spec-chip"><i class="fa-solid fa-palette"></i> Metallic Screen Print</span>
-              <span class="spec-chip"><i class="fa-solid fa-maximize"></i> Relaxed Oversized Fit</span>
+              <span class="spec-chip"><i class="fa-solid fa-palette"></i> Chrome Print</span>
+              <span class="spec-chip"><i class="fa-solid fa-maximize"></i> Oversized Cut</span>
             </div>
           </div>
 
@@ -166,10 +215,10 @@
               <span>04 // SACRED PERSPECTIVE</span>
             </div>
             <h2 class="story-title">Timeless Drape & Motion.</h2>
-            <p class="story-desc">Extended dress-tee proportion featuring the hand-detailed All-Seeing Mandala. Moves fluidly with every stride with 0% residual distortion.</p>
+            <p class="story-desc">Extended dress-tee proportion featuring the hand-detailed All-Seeing Mandala. Moves fluidly with 0% distortion.</p>
             <div class="spec-chips">
-              <span class="spec-chip"><i class="fa-solid fa-arrows-spin"></i> 3-Stage Enzyme Pre-Wash</span>
-              <span class="spec-chip"><i class="fa-solid fa-wind"></i> Fluid Kinetic Drape</span>
+              <span class="spec-chip"><i class="fa-solid fa-arrows-spin"></i> Enzyme Washed</span>
+              <span class="spec-chip"><i class="fa-solid fa-wind"></i> Kinetic Drape</span>
             </div>
           </div>
 
@@ -205,7 +254,7 @@
           <p class="section-subtitle">Cut from 280 GSM heavyweight organic cotton. All orders and checkouts are fulfilled via our secure official store.</p>
         </div>
 
-        <!-- Product Grid -->
+        <!-- Product Grid (Responsive 1/2/4 Columns) -->
         <div class="products-grid">
           
           <!-- Product 1 -->
@@ -226,8 +275,8 @@
                 <span class="product-gsm">280 GSM</span>
               </div>
               <h3 class="product-name">Bioluminescent Jellyfish Tee</h3>
-              <div class="product-price">$85.00 <span class="tax-tag">USD / INR Available</span></div>
-              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+              <div class="product-price">$85.00 <span class="tax-tag">USD / INR</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link mobile-product-btn">Acquire in Store ↗</a>
             </div>
           </div>
 
@@ -249,8 +298,8 @@
                 <span class="product-gsm">280 GSM</span>
               </div>
               <h3 class="product-name">Chrome Graffiti Oversized Tee</h3>
-              <div class="product-price">$90.00 <span class="tax-tag">USD / INR Available</span></div>
-              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+              <div class="product-price">$90.00 <span class="tax-tag">USD / INR</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link mobile-product-btn">Acquire in Store ↗</a>
             </div>
           </div>
 
@@ -272,8 +321,8 @@
                 <span class="product-gsm">280 GSM</span>
               </div>
               <h3 class="product-name">Sacred Eye Mandala Dress-Tee</h3>
-              <div class="product-price">$88.00 <span class="tax-tag">USD / INR Available</span></div>
-              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+              <div class="product-price">$88.00 <span class="tax-tag">USD / INR</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link mobile-product-btn">Acquire in Store ↗</a>
             </div>
           </div>
 
@@ -295,8 +344,8 @@
                 <span class="product-gsm">290 GSM</span>
               </div>
               <h3 class="product-name">Aurora Nebula Signature Tee</h3>
-              <div class="product-price">$95.00 <span class="tax-tag">USD / INR Available</span></div>
-              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link">Acquire in Store ↗</a>
+              <div class="product-price">$95.00 <span class="tax-tag">USD / INR</span></div>
+              <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="product-card-link mobile-product-btn">Acquire in Store ↗</a>
             </div>
           </div>
 
@@ -324,7 +373,7 @@
             <div class="stat-number">280</div>
             <div class="stat-unit">GSM HEAVYWEIGHT</div>
             <h3 class="stat-title">Architectural Drape</h3>
-            <p class="stat-desc">Substantial weight that falls effortlessly without clinging. Creates a structured, confident silhouette that flatters any build.</p>
+            <p class="stat-desc">Substantial weight that falls effortlessly without clinging. Creates a structured silhouette that flatters any build.</p>
           </div>
 
           <div class="anatomy-card glass-liquid-card">
@@ -423,6 +472,17 @@
     </section>
 
   </main>
+
+  <!-- Sticky Mobile Quick-Action Bar (Appears on Scroll) -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="mobile-sticky-btn">
+      <div class="btn-emblem">
+        <img src="VIYA_logo_gold.svg" alt="VIYA Emblem">
+      </div>
+      <span>DROP 01 // ENTER STORE</span>
+      <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">

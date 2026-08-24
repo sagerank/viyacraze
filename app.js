@@ -1,6 +1,6 @@
 /**
  * VIYACRAZE — High-Performance 60FPS Frame Scrubbing Engine
- * Liquid Motions, Ambient Glow Mesh, and Interactive Logic
+ * Mobile Navigation Drawer + Sticky Bar + Ambient Liquid Follower
  */
 
 (function () {
@@ -41,8 +41,56 @@
   const scrollDirective = document.getElementById('scrollDirective');
   const storyCards = document.querySelectorAll('.story-card');
   const liquidMesh = document.getElementById('liquidMesh');
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+  const mobileStickyBar = document.getElementById('mobileStickyBar');
 
-  // --- 1. Ambient Liquid Mesh Follower ---
+  // --- 1. Mobile Drawer Navigation Controller ---
+  function openMobileDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.add('active');
+      document.body.classList.add('drawer-open');
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.add('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+      }
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('active');
+      document.body.classList.remove('drawer-open');
+      if (mobileMenuToggle) {
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+  }
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isOpen = mobileDrawer && mobileDrawer.classList.contains('active');
+      if (isOpen) {
+        closeMobileDrawer();
+      } else {
+        openMobileDrawer();
+      }
+    });
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', closeMobileDrawer);
+  }
+
+  // Close drawer when any mobile nav link is clicked
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener('click', closeMobileDrawer);
+  });
+
+  // --- 2. Ambient Liquid Mesh Follower (Desktop Only) ---
   if (liquidMesh && window.matchMedia('(pointer: fine)').matches) {
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -64,7 +112,7 @@
     requestAnimationFrame(animateMesh);
   }
 
-  // --- 2. Robust Asset Preloader with Bitmap / GPU Decode ---
+  // --- 3. Robust Asset Preloader with Bitmap / GPU Decode ---
   async function preloadAssets() {
     if (!canvas || !ctx) return;
 
@@ -137,7 +185,7 @@
     }, 300);
   }
 
-  // --- 3. High-DPI Pixel-Perfect Canvas Sizing ---
+  // --- 4. High-DPI Pixel-Perfect Canvas Sizing ---
   function resizeCanvas() {
     if (!canvas || !ctx) return;
 
@@ -160,6 +208,7 @@
 
   if (canvas) {
     window.addEventListener('resize', debounce(resizeCanvas, 80));
+    window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 150));
   }
 
   function drawImageCover(img) {
@@ -204,8 +253,19 @@
     state.lastRenderedIndex = clampedIndex;
   }
 
-  // --- 4. Scroll-Driven Timeline ---
+  // --- 5. Scroll-Driven Timeline & Sticky Mobile Bar Reveal ---
   function onScroll() {
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    // Sticky Mobile Bar Reveal
+    if (mobileStickyBar) {
+      if (scrollY > 300) {
+        mobileStickyBar.classList.add('visible');
+      } else {
+        mobileStickyBar.classList.remove('visible');
+      }
+    }
+
     if (!scrollSection) return;
 
     const rect = scrollSection.getBoundingClientRect();
@@ -269,11 +329,9 @@
     requestAnimationFrame(renderLoop);
   }
 
-  if (scrollSection) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-  // --- 5. Interactive FAQ Accordion (Contact Page) ---
+  // --- 6. Interactive FAQ Accordion (Contact Page) ---
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach((item) => {
     const questionBtn = item.querySelector('.faq-question');
@@ -288,7 +346,7 @@
     }
   });
 
-  // --- 6. Atelier Contact Form Handler ---
+  // --- 7. Atelier Contact Form Handler ---
   window.handleContactSubmit = function (e) {
     e.preventDefault();
     const successBox = document.getElementById('contactSuccessMsg');
@@ -302,7 +360,7 @@
     }
   };
 
-  // --- 7. VIP Newsletter Handler ---
+  // --- 8. VIP Newsletter Handler ---
   window.handleNewsletter = function (e) {
     e.preventDefault();
     const input = document.getElementById('emailInput');
@@ -314,7 +372,7 @@
     }
   };
 
-  // --- 8. Utility: Debounce ---
+  // --- 9. Utility: Debounce ---
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
