@@ -284,7 +284,10 @@
     }
 
     if (scrubThumb) {
-      const maxTravel = 180 - 24;
+      const track = scrubThumb.parentElement;
+      const trackH = track ? track.clientHeight : 180;
+      const thumbH = scrubThumb.clientHeight || 24;
+      const maxTravel = Math.max(0, trackH - thumbH);
       scrubThumb.style.transform = `translateY(${progress * maxTravel}px)`;
     }
 
@@ -330,6 +333,8 @@
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('touchmove', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true });
 
   // --- 6. Interactive FAQ Accordion (Contact Page) ---
   const faqItems = document.querySelectorAll('.faq-item');

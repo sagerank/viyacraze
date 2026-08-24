@@ -70,7 +70,6 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -81,7 +80,6 @@ body {
   background-color: var(--bg-obsidian);
   line-height: 1.6;
   position: relative;
-  overflow-x: hidden;
 }
 
 body.is-loading {
@@ -2104,7 +2102,21 @@ body.drawer-open {
   }
 
   .frame-scrub-indicator {
-    display: none;
+    display: flex;
+    right: 1rem;
+    top: 38%;
+    transform: translateY(-50%) scale(0.85);
+    transform-origin: right center;
+    background: rgba(4, 4, 7, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px 4px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(223, 186, 115, 0.2);
+  }
+
+  .indicator-track {
+    height: 120px;
   }
 
   .products-grid,
