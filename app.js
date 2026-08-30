@@ -26,8 +26,8 @@
     tiktokUrl: '',
     twitterUrl: '',
     youtubeUrl: '',
-    // Next drop close: 'YYYY-MM-DDTHH:mm:ss' shows a live countdown in the
-    // announcement bar. Leave null to hide the countdown.
+    // Next drop close: 'YYYY-MM-DDTHH:mm:ss' renders a live countdown into
+    // any #dropCountdown element. Leave null to hide.
     nextDropDate: null
   };
   const CONTACT_EMAIL = 'concierge@viyacraze.com';
@@ -723,7 +723,7 @@
 
   // --- 14. Site Services: countdown, social wiring, progress, back-to-top ---
 
-  // Live drop countdown in the announcement bar (only when a date is set).
+  // Live drop countdown (renders wherever a #dropCountdown element exists).
   const countdownEl = document.getElementById('dropCountdown');
   if (countdownEl && SITE_CONFIG.nextDropDate) {
     const target = new Date(SITE_CONFIG.nextDropDate).getTime();

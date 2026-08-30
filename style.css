@@ -47,7 +47,6 @@
 
   /* Layout Dimensions & Easing */
   --nav-height: 84px;
-  --announce-h: 40px;
   --ease-couture: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
   --radius-xs: 4px;
@@ -317,7 +316,7 @@ body.drawer-open {
    ========================================================================== */
 .header {
   position: fixed;
-  top: var(--announce-h);
+  top: 0;
   left: 0;
   width: 100%;
   height: var(--nav-height);
@@ -1591,7 +1590,7 @@ body.drawer-open {
    PAGE: WHO WE ARE (about.html)
    ========================================================================== */
 .page-content-wrapper {
-  padding-top: calc(var(--nav-height) + var(--announce-h));
+  padding-top: var(--nav-height);
 }
 
 .about-hero,
@@ -2576,7 +2575,7 @@ html.has-cursor select {
 }
 
 .hud-corner.tl {
-  top: calc(var(--nav-height) + var(--announce-h) + 14px);
+  top: calc(var(--nav-height) + 14px);
   left: 1.6rem;
 }
 
@@ -2587,7 +2586,7 @@ html.has-cursor select {
 }
 
 .hud-corner.tr {
-  top: calc(var(--nav-height) + var(--announce-h) + 14px);
+  top: calc(var(--nav-height) + 14px);
   right: 1.6rem;
 }
 
@@ -2632,7 +2631,7 @@ html.has-cursor select {
 }
 
 .hud-tag.tl {
-  top: calc(var(--nav-height) + var(--announce-h) + 19px);
+  top: calc(var(--nav-height) + 19px);
   left: 3.2rem;
 }
 
@@ -2738,7 +2737,7 @@ html.has-cursor select {
 
   .hud-corner.tl,
   .hud-corner.tr {
-    top: calc(var(--nav-height) + var(--announce-h) + 8px);
+    top: calc(var(--nav-height) + 8px);
   }
 
   .hud-corner.tl,
@@ -2784,54 +2783,6 @@ html.has-cursor select {
    PHASE 3 — ANNOUNCEMENT, TRUST, FILM, TESTIMONIALS, SIZING, UTILITIES
    ========================================================================== */
 
-/* Announcement Bar (fixed above the header) */
-.announce-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--announce-h);
-  z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 1rem;
-  background: linear-gradient(90deg, #120d04, #241a08 50%, #120d04);
-  border-bottom: 1px solid var(--border-gold-subtle);
-  overflow: hidden;
-}
-
-.announce-text {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold-primary);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.announce-text a {
-  color: var(--gold-light);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(223, 186, 115, 0.4);
-  padding-bottom: 1px;
-}
-
-.announce-text a:hover {
-  border-bottom-color: var(--gold-light);
-}
-
-.announce-countdown {
-  margin-left: 0.9em;
-  padding: 2px 10px;
-  border: 1px solid var(--border-gold-active);
-  border-radius: var(--radius-pill);
-  color: var(--gold-light);
-  font-variant-numeric: tabular-nums;
-}
 
 /* Trust strip under conversion points */
 .trust-strip {
@@ -3094,9 +3045,9 @@ html.has-cursor select {
   color: #060609;
 }
 
-/* Anchored sections clear the fixed announcement + header */
+/* Anchored sections clear the fixed header */
 .section[id], .about-hero[id], .contact-hero[id] {
-  scroll-margin-top: calc(var(--nav-height) + var(--announce-h) + 8px);
+  scroll-margin-top: calc(var(--nav-height) + 8px);
 }
 
 /* Legal pages */
@@ -3112,7 +3063,7 @@ html.has-cursor select {
   text-transform: uppercase;
   color: var(--gold-primary);
   margin: 2.2rem 0 0.8rem 0;
-  scroll-margin-top: calc(var(--nav-height) + var(--announce-h) + 20px);
+  scroll-margin-top: calc(var(--nav-height) + 20px);
 }
 
 .legal-content h2:first-child {
@@ -3184,15 +3135,6 @@ html.has-cursor select {
 }
 
 @media (max-width: 768px) {
-  :root {
-    --announce-h: 34px;
-  }
-
-  .announce-text {
-    font-size: 0.58rem;
-    letter-spacing: 0.12em;
-  }
-
   .back-to-top {
     display: none;
   }
