@@ -8,10 +8,13 @@
 
   // --- Configuration ---
   const TOTAL_FRAMES = 240;
+  const EAGER_FRAMES = 30;          // frames loaded + decoded before the preloader finishes
+  const DECODE_AHEAD = 10;          // frames kept pre-decoded around the playhead
   const FRAME_DIR = 'frames/';
   const FRAME_PREFIX = 'frame_';
   const FRAME_EXT = '.webp';
   const HERO_IMAGE_SRC = 'viyahero-gold.jpeg';
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const padIndex = (num) => String(num).padStart(4, '0');
 
@@ -25,6 +28,7 @@
     targetFrameIndex: 0,
     lastRenderedIndex: -1,
     isLoaded: false,
+    rafActive: false,
     scrollProgress: 0
   };
 
@@ -105,21 +109,55 @@
     const animateMesh = () => {
       currentX += (mouseX - currentX) * 0.08;
       currentY += (mouseY - currentY) * 0.08;
-      liquidMesh.style.left = `${currentX}px`;
-      liquidMesh.style.top = `${currentY}px`;
+      // Compositor-only transform (left/top would trigger layout every frame)
+      liquidMesh.style.transform = `translate3d(${currentX.toFixed(1)}px, ${currentY.toFixed(1)}px, 0) translate(-50%, -50%)`;
       requestAnimationFrame(animateMesh);
     };
     requestAnimationFrame(animateMesh);
   }
 
-  // --- 3. Robust Asset Preloader with Bitmap / GPU Decode ---
+  // --- 3. Progressive Asset Preloader (eager first 30, rest stream in background) ---
+  function loadFrame(i, eager) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      const framePath = `${FRAME_DIR}${FRAME_PREFIX}${padIndex(i)}${FRAME_EXT}`;
+
+      img.onload = async () => {
+        if (eager && 'decode' in img) {
+          try { await img.decode(); } catch (e) {}
+          img.__decoded = true;
+        }
+        state.frames[i - 1] = img;
+        resolve();
+      };
+      img.onerror = () => {
+        if (eager) console.warn(`Could not load frame: ${framePath}`);
+        resolve();
+      };
+      img.src = framePath;
+    });
+  }
+
+  function loadRemainingFrames() {
+    let next = EAGER_FRAMES + 1;
+    const batch = () => {
+      const end = Math.min(next + 16, TOTAL_FRAMES + 1);
+      const jobs = [];
+      for (; next < end; next++) jobs.push(loadFrame(next, false));
+      Promise.all(jobs).then(() => {
+        if (next <= TOTAL_FRAMES) setTimeout(batch, 100);
+      });
+    };
+    batch();
+  }
+
   async function preloadAssets() {
     if (!canvas || !ctx) return;
 
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
+    ctx.imageSmoothingQuality = 'medium';
 
-    const totalAssets = TOTAL_FRAMES + 1;
+    const totalAssets = EAGER_FRAMES + 1;
     let loadedAssets = 0;
 
     const updateProgress = () => {
@@ -150,24 +188,10 @@
       updateProgress();
     };
 
-    // Load & Decode All 240 Frames
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
-      const img = new Image();
-      const framePath = `${FRAME_DIR}${FRAME_PREFIX}${padIndex(i)}${FRAME_EXT}`;
-      const frameIndex = i - 1;
-
-      img.src = framePath;
-      img.onload = async () => {
-        try {
-          if ('decode' in img) await img.decode();
-        } catch (e) {}
-        state.frames[frameIndex] = img;
-        updateProgress();
-      };
-      img.onerror = () => {
-        console.warn(`Could not load frame: ${framePath}`);
-        updateProgress();
-      };
+    // Load & Decode the eager opening frames only — the preloader no longer
+    // blocks on all 240 frames (13 MB); the rest stream in after start.
+    for (let i = 1; i <= EAGER_FRAMES; i++) {
+      loadFrame(i, true).then(updateProgress);
     }
   }
 
@@ -181,15 +205,18 @@
 
       resizeCanvas();
       forceRender(0);
-      requestAnimationFrame(renderLoop);
+      wakeRender();
+      loadRemainingFrames();
     }, 300);
   }
 
-  // --- 4. High-DPI Pixel-Perfect Canvas Sizing ---
+  // --- 4. Canvas Sizing ---
   function resizeCanvas() {
     if (!canvas || !ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Source frames are 1280x720 — rendering above 1x DPR only multiplies
+    // fill cost for an upscaled image, so the canvas stays at 1:1 CSS pixels.
+    const dpr = 1;
     const width = window.innerWidth;
     const height = window.innerHeight;
 
@@ -200,7 +227,7 @@
     canvas.style.height = `${height}px`;
 
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
+    ctx.imageSmoothingQuality = 'medium';
 
     state.lastRenderedIndex = -1;
     forceRender(Math.round(state.currentFrameIndex));
@@ -228,8 +255,25 @@
     ctx.drawImage(img, 0, 0, iw, ih, ox, oy, nw, nh);
   }
 
+  // Keep the next DECODE_AHEAD frames decoded so scrubbing never stalls on a
+  // synchronous main-thread decode.
+  function ensureDecoded(frameIndex) {
+    const last = Math.min(frameIndex + DECODE_AHEAD, TOTAL_FRAMES);
+    for (let i = Math.max(1, frameIndex); i <= last; i++) {
+      const img = state.frames[i - 1];
+      if (img && img.complete && !img.__decoding && !img.__decoded) {
+        img.__decoding = true;
+        const done = () => { img.__decoded = true; wakeRender(); };
+        if ('decode' in img) img.decode().then(done, done);
+        else img.__decoded = true;
+      }
+    }
+  }
+
+  // Returns true when the frame was drawn (or is permanently unavailable) so
+  // the render loop knows whether it must keep spinning for a pending decode.
   function forceRender(frameIndex) {
-    if (!ctx) return;
+    if (!ctx) return true;
 
     const clampedIndex = Math.max(0, Math.min(TOTAL_FRAMES, frameIndex));
 
@@ -240,17 +284,27 @@
         drawImageCover(state.frames[0]);
       }
       if (currentFrameNumber) currentFrameNumber.textContent = 'HERO';
-    } else {
-      const img = state.frames[clampedIndex - 1];
-      if (img && img.complete) {
-        drawImageCover(img);
-      }
-      if (currentFrameNumber) {
-        currentFrameNumber.textContent = padIndex(clampedIndex).slice(1);
-      }
+      state.lastRenderedIndex = clampedIndex;
+      return true;
     }
 
+    const img = state.frames[clampedIndex - 1];
+    if (!img || !img.complete) {
+      // Frame still streaming in the background — accept and move on.
+      state.lastRenderedIndex = clampedIndex;
+      return true;
+    }
+    if (!img.__decoded) {
+      ensureDecoded(clampedIndex);
+      return false;
+    }
+
+    drawImageCover(img);
+    if (currentFrameNumber) {
+      currentFrameNumber.textContent = padIndex(clampedIndex).slice(1);
+    }
     state.lastRenderedIndex = clampedIndex;
+    return true;
   }
 
   // --- 5. Scroll-Driven Timeline & Sticky Mobile Bar Reveal ---
@@ -296,6 +350,7 @@
     }
 
     updateStoryCards(progress * 100);
+    wakeRender();
   }
 
   function updateStoryCards(percentage) {
@@ -314,7 +369,7 @@
   function renderLoop() {
     if (!canvas) return;
 
-    const lerpSpeed = 0.20;
+    const lerpSpeed = REDUCED_MOTION ? 1 : 0.20;
     const diff = state.targetFrameIndex - state.currentFrameIndex;
 
     if (Math.abs(diff) > 0.01) {
@@ -323,13 +378,28 @@
       state.currentFrameIndex = state.targetFrameIndex;
     }
 
+    ensureDecoded(Math.round(state.currentFrameIndex));
+
+    let drew = true;
     const roundedIndex = Math.round(state.currentFrameIndex);
 
     if (roundedIndex !== state.lastRenderedIndex) {
-      forceRender(roundedIndex);
+      drew = forceRender(roundedIndex);
     }
 
-    requestAnimationFrame(renderLoop);
+    // Park the loop when the scrub is settled — it wakes on scroll or decode.
+    if (!drew || state.currentFrameIndex !== state.targetFrameIndex) {
+      requestAnimationFrame(renderLoop);
+    } else {
+      state.rafActive = false;
+    }
+  }
+
+  function wakeRender() {
+    if (canvas && !state.rafActive) {
+      state.rafActive = true;
+      requestAnimationFrame(renderLoop);
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -468,6 +538,119 @@
       clearTimeout(timeout);
       timeout = setTimeout(() => func.apply(this, args), wait);
     };
+  }
+
+  // --- 13. UI Detail Pass: reveals, count-up, magnetic buttons, cursor ---
+  const FINE_POINTER = window.matchMedia('(pointer: fine)').matches;
+
+  // Staggered scroll-reveal for every card/metric grid (JS-tagged so no-JS
+  // visitors always see the content).
+  const revealables = document.querySelectorAll(
+    '.anatomy-card, .pillar-card, .timeline-step, .mosaic-item, .channel-card, .faq-item, .metric-item, .cta-inner, .contact-form-wrap'
+  );
+  if (revealables.length && 'IntersectionObserver' in window && !REDUCED_MOTION) {
+    const groups = new Map();
+    revealables.forEach((el) => {
+      el.classList.add('rv');
+      const parent = el.parentElement;
+      const idx = groups.get(parent) || 0;
+      groups.set(parent, idx + 1);
+      el.style.setProperty('--rv-i', Math.min(idx, 6));
+    });
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealables.forEach((el) => revealIO.observe(el));
+  }
+
+  // Count-up on the anatomy stat numbers (240 / 100%) when they enter view.
+  const statNumbers = document.querySelectorAll('.anatomy-card .stat-number');
+  if (statNumbers.length && 'IntersectionObserver' in window) {
+    const animateCount = (el) => {
+      const raw = el.textContent.trim();
+      const match = raw.match(/^(\d+)(%?)$/);
+      if (!match) return;
+      const target = parseInt(match[1], 10);
+      const suffix = match[2];
+      if (!target || REDUCED_MOTION) return;
+      const duration = 1100;
+      const startAt = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - startAt) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNumbers.forEach((el) => countIO.observe(el));
+  }
+
+  // Magnetic hover pull on primary buttons (desktop, motion-safe only).
+  if (FINE_POINTER && !REDUCED_MOTION) {
+    document.querySelectorAll('.liquid-btn').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const dx = (e.clientX - rect.left - rect.width / 2) / rect.width;
+        const dy = (e.clientY - rect.top - rect.height / 2) / rect.height;
+        btn.style.transform = `translate(${(dx * 8).toFixed(1)}px, ${(dy * 6 - 2).toFixed(1)}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  // Custom gold cursor: dot + trailing ring (desktop, motion-safe only).
+  if (FINE_POINTER && !REDUCED_MOTION && !('ontouchstart' in window)) {
+    document.documentElement.classList.add('has-cursor');
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.append(dot, ring);
+
+    let cx = innerWidth / 2, cy = innerHeight / 2, rx = cx, ry = cy;
+    let mouseX = cx, mouseY = cy;
+    let cursorRaf = false;
+    const renderCursor = () => {
+      cx += (mouseX - cx) * 0.55;
+      cy += (mouseY - cy) * 0.55;
+      rx += (mouseX - rx) * 0.16;
+      ry += (mouseY - ry) * 0.16;
+      dot.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+      cursorRaf = false;
+    };
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.classList.add('is-visible');
+      ring.classList.add('is-visible');
+      if (!cursorRaf) { cursorRaf = true; requestAnimationFrame(renderCursor); }
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => {
+      dot.classList.remove('is-visible');
+      ring.classList.remove('is-visible');
+    });
+    const hoverSel = 'a, button, .mosaic-item, .faq-question, input, textarea, select, label';
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest && e.target.closest(hoverSel)) ring.classList.add('is-hover');
+      else ring.classList.remove('is-hover');
+    });
   }
 
   // Initialize
