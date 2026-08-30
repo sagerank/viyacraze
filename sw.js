@@ -2,12 +2,14 @@
  * VIYACRAZE — High-Performance Frame Cache Service Worker
  */
 
-const CACHE_NAME = 'viyacraze-v2';
+const CACHE_NAME = 'viyacraze-v3';
 const CORE_ASSETS = [
   '/',
   '/index.html',
   '/about.html',
   '/contact.html',
+  '/privacy.html',
+  '/terms.html',
   '/style.css',
   '/app.js',
   '/VIYA_logo_gold.svg',

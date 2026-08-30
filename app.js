@@ -16,6 +16,22 @@
   const HERO_IMAGE_SRC = 'viyahero-gold.jpeg';
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // --- SITE CONFIG (edit these values only — they wire the whole site) ---
+  const SITE_CONFIG = {
+    // Your real WhatsApp number in international format, digits only.
+    // The contact form composes a prefilled message to this number.
+    whatsappNumber: '919876543210',
+    // Social profile URLs — leave '' to keep the icon inactive.
+    instagramUrl: '',
+    tiktokUrl: '',
+    twitterUrl: '',
+    youtubeUrl: '',
+    // Next drop close: 'YYYY-MM-DDTHH:mm:ss' shows a live countdown in the
+    // announcement bar. Leave null to hide the countdown.
+    nextDropDate: null
+  };
+  const CONTACT_EMAIL = 'concierge@viyacraze.com';
+
   const padIndex = (num) => String(num).padStart(4, '0');
 
   // State Management
@@ -421,18 +437,35 @@
     }
   });
 
-  // --- 7. Contact Form Handler ---
+  // --- 7. Contact Form → WhatsApp Concierge Handoff ---
   window.handleContactSubmit = function (e) {
     e.preventDefault();
     const successBox = document.getElementById('contactSuccessMsg');
     const form = document.getElementById('contactForm');
+    if (!form) return;
 
-    if (successBox && form) {
-      successBox.style.display = 'flex';
-      form.querySelectorAll('input, select, textarea, button').forEach((el) => {
-        el.disabled = true;
-      });
+    const get = (id) => (document.getElementById(id) || {}).value || '';
+    const nature = get('contactSubject');
+    const natureLabel = (form.querySelector('#contactSubject option:checked') || {}).textContent || nature;
+    const lines = [
+      'VIYA Concierge Inquiry',
+      '——————————————',
+      `Name: ${get('contactName')}`,
+      `Email: ${get('contactEmail')}`,
+      `Inquiry: ${natureLabel}`,
+      '',
+      get('contactMessage')
+    ].join('\n');
+
+    const digits = String(SITE_CONFIG.whatsappNumber).replace(/\D/g, '');
+    if (digits) {
+      window.open(`https://wa.me/${digits}?text=${encodeURIComponent(lines)}`, '_blank', 'noopener');
+    } else {
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('VIYA Inquiry — ' + natureLabel)}&body=${encodeURIComponent(lines)}`;
     }
+
+    if (successBox) successBox.style.display = 'flex';
+    form.querySelectorAll('input, select, textarea, button').forEach((el) => { el.disabled = true; });
   };
 
   // --- 8. VIP Newsletter Handler ---
@@ -447,20 +480,47 @@
     }
   };
 
-  // --- 9. Editorial Lookbook Fullscreen Lightbox Controller ---
+  // --- 9. Editorial Lookbook Fullscreen Lightbox Gallery ---
   const lightbox = document.getElementById('lookbookLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxCounter = document.getElementById('lightboxCounter');
   const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
   const mosaicItems = document.querySelectorAll('.mosaic-item');
 
-  function openLightbox(imgSrc, captionText) {
-    if (lightbox && lightboxImg && lightboxCaption) {
-      lightboxImg.src = imgSrc;
-      lightboxCaption.textContent = captionText;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  // Build the gallery from the lookbook mosaic (src + caption pairs)
+  const gallery = Array.from(mosaicItems).map((item) => {
+    const img = item.querySelector('img');
+    const caption = item.querySelector('.mosaic-caption');
+    return {
+      src: img ? img.getAttribute('src') : '',
+      alt: img ? img.alt : 'VIYACRAZE Editorial',
+      caption: caption ? caption.textContent.trim() : 'VIYACRAZE Official Editorial'
+    };
+  });
+  let galleryIndex = 0;
+
+  function showGalleryImage(idx) {
+    if (!gallery.length) return;
+    galleryIndex = (idx + gallery.length) % gallery.length;
+    const item = gallery[galleryIndex];
+    if (lightboxImg) {
+      lightboxImg.src = item.src;
+      lightboxImg.alt = item.alt;
     }
+    if (lightboxCaption) lightboxCaption.textContent = item.caption;
+    if (lightboxCounter) {
+      lightboxCounter.textContent = `${String(galleryIndex + 1).padStart(2, '0')} / ${String(gallery.length).padStart(2, '0')}`;
+    }
+  }
+
+  function openLightbox(index) {
+    if (!lightbox) return;
+    showGalleryImage(index);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
@@ -470,20 +530,15 @@
     }
   }
 
-  mosaicItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      const caption = item.querySelector('.mosaic-caption');
-      if (img) {
-        const captionText = caption ? caption.textContent.trim() : 'VIYACRAZE Official Editorial';
-        openLightbox(img.src, captionText);
-      }
-    });
+  const navLightbox = (dir) => showGalleryImage(galleryIndex + dir);
+
+  mosaicItems.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
   });
 
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
-  }
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', () => navLightbox(-1));
+  if (lightboxNext) lightboxNext.addEventListener('click', () => navLightbox(1));
 
   if (lightbox) {
     lightbox.addEventListener('click', (e) => {
@@ -491,12 +546,25 @@
         closeLightbox();
       }
     });
+
+    // Swipe navigation on touch devices
+    let touchX = null;
+    lightbox.addEventListener('touchstart', (e) => {
+      touchX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 48) navLightbox(dx > 0 ? -1 : 1);
+      touchX = null;
+    }, { passive: true });
   }
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-      closeLightbox();
-    }
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
   });
 
   // --- 10. 3D Card Gyroscope & Cursor Parallax Tilt (Desktop & Pointer Fine) ---
@@ -650,6 +718,71 @@
     document.addEventListener('mouseover', (e) => {
       if (e.target.closest && e.target.closest(hoverSel)) ring.classList.add('is-hover');
       else ring.classList.remove('is-hover');
+    });
+  }
+
+  // --- 14. Site Services: countdown, social wiring, progress, back-to-top ---
+
+  // Live drop countdown in the announcement bar (only when a date is set).
+  const countdownEl = document.getElementById('dropCountdown');
+  if (countdownEl && SITE_CONFIG.nextDropDate) {
+    const target = new Date(SITE_CONFIG.nextDropDate).getTime();
+    if (!isNaN(target)) {
+      countdownEl.hidden = false;
+      let countdownTimer = null;
+      const renderCountdown = () => {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          countdownEl.textContent = 'EDITION CLOSED';
+          if (countdownTimer) clearInterval(countdownTimer);
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        countdownEl.textContent = `CLOSES IN ${d}D ${String(h).padStart(2, '0')}H ${String(m).padStart(2, '0')}M`;
+      };
+      renderCountdown();
+      countdownTimer = setInterval(renderCountdown, 30000);
+    }
+  }
+
+  // Wire social icons from SITE_CONFIG; inactive networks get a disabled state.
+  const socialMap = {
+    Instagram: SITE_CONFIG.instagramUrl,
+    TikTok: SITE_CONFIG.tiktokUrl,
+    Twitter: SITE_CONFIG.twitterUrl,
+    YouTube: SITE_CONFIG.youtubeUrl
+  };
+  document.querySelectorAll('.social-links a[aria-label]').forEach((a) => {
+    const url = socialMap[a.getAttribute('aria-label')];
+    if (url) {
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+    } else {
+      a.classList.add('social-inactive');
+      a.setAttribute('aria-disabled', 'true');
+      a.setAttribute('title', 'Coming soon');
+      a.addEventListener('click', (e) => e.preventDefault());
+    }
+  });
+
+  // Thin scroll progress bar (top edge) + back-to-top button.
+  const progressBarEl = document.getElementById('scrollProgress');
+  const backToTop = document.getElementById('backToTop');
+  const updateScrollUI = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    if (progressBarEl) progressBarEl.style.width = `${(progress * 100).toFixed(2)}%`;
+    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 600);
+  };
+  window.addEventListener('scroll', updateScrollUI, { passive: true });
+  updateScrollUI();
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
     });
   }
 

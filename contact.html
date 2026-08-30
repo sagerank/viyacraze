@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Contact Us | VIYACRAZE Official Client Care</title>
   <meta name="description" content="Get in touch with VIYA for sizing assistance, order inquiries, collaborations, and official online store support.">
+  <link rel="canonical" href="https://viyacraze.com/contact.html">
   
   <!-- PWA & Mobile Web App Meta -->
   <link rel="icon" type="image/svg+xml" href="VIYA_logo_gold.svg">
@@ -19,14 +20,14 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact Us | VIYACRAZE Official Client Care">
   <meta property="og:description" content="Connect with the VIYACRAZE concierge for sizing guidance, drop inquiries, and store support.">
-  <meta property="og:image" content="viyahero.jpeg">
+  <meta property="og:image" content="viyahero-gold.jpeg">
   <meta property="og:url" content="https://viyacraze.com/contact.html">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contact Us | VIYACRAZE Official Client Care">
   <meta name="twitter:description" content="Connect with the VIYACRAZE concierge for sizing guidance, drop inquiries, and store support.">
-  <meta name="twitter:image" content="viyahero.jpeg">
+  <meta name="twitter:image" content="viyahero-gold.jpeg">
 
   <!-- Premium Luxury Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +41,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-contact">
+
+  <!-- Announcement Bar -->
+  <div class="announce-bar" id="announceBar">
+    <span class="announce-text">DROP 01 LIVE &mdash; STRICTLY LIMITED PRODUCTION &mdash; <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener">SHOP THE OFFICIAL STORE ↗</a><span class="announce-countdown" id="dropCountdown" hidden></span></span>
+  </div>
 
   <!-- Liquid Ambient Glow Mesh -->
   <div class="liquid-ambient-mesh" id="liquidMesh"></div>
@@ -239,11 +245,48 @@
 
     <div class="ornament-divider" aria-hidden="true"><span class="od-line"></span><span class="od-diamond"></span><span class="od-line"></span></div>
 
+    <!-- Size Guide Section -->
+    <section class="section sizing-section" id="sizing">
+      <div class="section-container">
+        <div class="section-header" data-num="01">
+          <div class="section-eyebrow">FIT ARCHITECTURE</div>
+          <h2 class="section-title">THE SIZE GUIDE</h2>
+          <p class="section-subtitle">Architectural drop-shoulder fit — slightly boxy through the chest, true to size in length. Size up for an oversized drape.</p>
+        </div>
+
+        <div class="size-table-wrap glass-liquid-card">
+          <table class="size-table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Chest (in)</th>
+                <th>Length (in)</th>
+                <th>Shoulder (in)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>S</td><td>42</td><td>27</td><td>20</td></tr>
+              <tr><td>M</td><td>44</td><td>28</td><td>21</td></tr>
+              <tr><td>L</td><td>46</td><td>29</td><td>22</td></tr>
+              <tr><td>XL</td><td>48</td><td>30</td><td>23</td></tr>
+            </tbody>
+          </table>
+          <div class="size-notes">
+            <p><strong>How to measure:</strong> lay your best-fitting tee flat and measure across the chest, from seam to seam, then compare with the chart. Chest shown is garment width, not body measurement.</p>
+            <p><strong>Model reference:</strong> 5'11" / 180 cm wearing size L for a true boxy drape.</p>
+            <p class="size-verify">Garment tolerances ±0.5". Between sizes? Size up for the editorial drape.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ornament-divider" aria-hidden="true"><span class="od-line"></span><span class="od-diamond"></span><span class="od-line"></span></div>
+
     <!-- FAQ Accordion Section -->
     <section class="section faq-section" id="faq">
       <div class="section-container">
 
-        <div class="section-header" data-num="01">
+        <div class="section-header" data-num="02">
           <div class="section-eyebrow">FREQUENTLY ASKED QUESTIONS</div>
           <h2 class="section-title">EVERYTHING YOU NEED TO KNOW</h2>
           <p class="section-subtitle">Clarifications regarding ordering via our official store, our 240 GSM fabric standard, sizing, and care.</p>
@@ -301,6 +344,26 @@
             </div>
           </div>
 
+          <div class="faq-item glass-liquid-card">
+            <button class="faq-question">
+              <span>How long does shipping take?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Orders are dispatched from our studio within <strong>24–48 hours</strong> of confirmation and typically deliver across India within <strong>4–7 working days</strong>. Every order ships with tracking shared over email and WhatsApp.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-liquid-card">
+            <button class="faq-question">
+              <span>What is the returns and exchange policy?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We offer a <strong>7-day exchange window</strong> for unworn garments with tags and original packaging intact. Size exchanges ship once the original piece passes our quality check. For a defective or damaged piece, contact us within 48 hours of delivery with an unboxing photo and we will make it right — replacement or refund.</p>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -318,6 +381,10 @@
       <i class="fa-solid fa-arrow-up-right-from-square"></i>
     </a>
   </div>
+
+  <!-- Scroll Progress + Back To Top -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <!-- Footer -->
   <footer class="footer">
@@ -349,7 +416,7 @@
           <ul>
             <li><a href="about.html#philosophy">Fabric Specs (240 GSM)</a></li>
             <li><a href="about.html#process">Crafting Process</a></li>
-            <li><a href="contact.html#faq">Sizing Guide</a></li>
+            <li><a href="contact.html#sizing">Sizing Guide</a></li>
             <li><a href="contact.html#support">VIP Support</a></li>
           </ul>
         </div>
@@ -368,9 +435,9 @@
       <div class="footer-bottom">
         <div class="copyright">© VIYACRAZE APPAREL GROUP. ALL RIGHTS RESERVED.</div>
         <div class="footer-legal">
-          <a href="#">PRIVACY POLICY</a>
-          <a href="#">TERMS OF SERVICE</a>
-          <a href="#">ACCESSIBILITY</a>
+          <a href="privacy.html">PRIVACY POLICY</a>
+          <a href="terms.html">TERMS OF SERVICE</a>
+          <a href="privacy.html#accessibility">ACCESSIBILITY</a>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>VIYACRAZE | Architectural Heavyweight Luxury</title>
   <meta name="description" content="Shop VIYACRAZE Drop 01. Engineered 240 GSM heavyweight streetwear with architectural silhouettes and timeless craftsmanship. Available on official store.">
+  <link rel="canonical" href="https://viyacraze.com/">
   
   <!-- PWA & Mobile Web App Meta -->
   <link rel="icon" type="image/svg+xml" href="VIYA_logo_gold.svg">
@@ -19,14 +20,41 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="VIYACRAZE | Architectural Heavyweight Luxury">
   <meta property="og:description" content="240 GSM Heavyweight Organic Cotton Streetwear. Engineered in the shadows, crafted for the light.">
-  <meta property="og:image" content="viyahero.jpeg">
+  <meta property="og:image" content="viyahero-gold.jpeg">
   <meta property="og:url" content="https://viyacraze.com">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="VIYACRAZE | Architectural Heavyweight Luxury">
   <meta name="twitter:description" content="240 GSM Heavyweight Organic Cotton Streetwear. Engineered in the shadows, crafted for the light.">
-  <meta name="twitter:image" content="viyahero.jpeg">
+  <meta name="twitter:image" content="viyahero-gold.jpeg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "VIYACRAZE",
+        "url": "https://viyacraze.com/",
+        "logo": "https://viyacraze.com/VIYA_logo_gold.svg",
+        "slogan": "Wear Your Story — Engineered for Timeless Presence"
+      },
+      {
+        "@type": "Product",
+        "name": "VIYACRAZE Drop 01 — 240 GSM Heavyweight Tee",
+        "description": "Premium 240 GSM heavyweight cotton tee with bold DTF prints, 2x2 spandex ribbed collar and architectural drop-shoulder fit. Strictly limited production.",
+        "brand": { "@type": "Brand", "name": "VIYACRAZE" },
+        "material": "240 GSM premium heavyweight cotton",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://viyacraze.mydukaan.io",
+          "availability": "https://schema.org/LimitedAvailability"
+        }
+      }
+    ]
+  }
+  </script>
   
   <!-- Premium Luxury Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +68,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="is-loading page-home">
+
+  <!-- Announcement Bar -->
+  <div class="announce-bar" id="announceBar">
+    <span class="announce-text">DROP 01 LIVE &mdash; STRICTLY LIMITED PRODUCTION &mdash; <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener">SHOP THE OFFICIAL STORE ↗</a><span class="announce-countdown" id="dropCountdown" hidden></span></span>
+  </div>
 
   <!-- Liquid Ambient Glow Mesh Follower -->
   <div class="liquid-ambient-mesh" id="liquidMesh"></div>
@@ -366,8 +399,8 @@
         <div class="lookbook-mosaic">
           <div class="mosaic-item large glass-liquid-card" title="Click to inspect haute couture detail">
             <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
-            <img src="viyahero.jpeg" alt="VIYA 3D Embossed Sleeve Emblem" loading="lazy">
-            <div class="mosaic-caption">HERO // 00 - 3D Embossed Sleeve Identity</div>
+            <img src="viyahero-gold.jpeg" alt="VIYA Gold Embossed Sleeve Emblem" loading="lazy">
+            <div class="mosaic-caption">HERO // 00 - Gold Embossed Sleeve Identity</div>
           </div>
           <div class="mosaic-item glass-liquid-card" title="Click to inspect haute couture detail">
             <span class="mosaic-expand-hint"><i class="fa-solid fa-expand"></i></span>
@@ -396,6 +429,55 @@
 
     <div class="ornament-divider" aria-hidden="true"><span class="od-line"></span><span class="od-diamond"></span><span class="od-line"></span></div>
 
+    <!-- SECTION: THE FILM -->
+    <section id="film" class="section film-section">
+      <div class="section-container">
+        <div class="section-header" data-num="03">
+          <div class="section-eyebrow">IN MOTION</div>
+          <h2 class="section-title">THE FILM</h2>
+          <p class="section-subtitle">Drop 01, worn the way it was designed — in motion, under concrete light.</p>
+        </div>
+        <div class="film-grid">
+          <figure class="film-frame glass-liquid-card">
+            <video src="vdoo.mp4" autoplay muted loop playsinline preload="metadata" poster="viyahero-gold.jpeg" aria-label="VIYACRAZE Drop 01 editorial film, look one"></video>
+            <figcaption class="film-caption">FILM // 01 - SACRED EYE</figcaption>
+          </figure>
+          <figure class="film-frame glass-liquid-card">
+            <video src="vdo.mp4" autoplay muted loop playsinline preload="metadata" poster="viyahero-gold.jpeg" aria-label="VIYACRAZE Drop 01 editorial film, look two"></video>
+            <figcaption class="film-caption">FILM // 02 - MANDALA DRAPE</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: TESTIMONIALS -->
+    <section id="voices" class="section testimonials-section">
+      <div class="section-container">
+        <div class="section-header" data-num="04">
+          <div class="section-eyebrow">VOICES</div>
+          <h2 class="section-title">WORN &amp; VERIFIED</h2>
+          <p class="section-subtitle">First words from the first wearers of Drop 01.</p>
+        </div>
+        <div class="testimonials-grid">
+          <figure class="testimonial-card glass-liquid-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="testimonial-quote">"The weight is unreal — it hangs like a jacket, not a tee. The print still looks brand new after a month of washes."</blockquote>
+            <figcaption class="testimonial-author">ADITYA M. <span>// MUMBAI</span></figcaption>
+          </figure>
+          <figure class="testimonial-card glass-liquid-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="testimonial-quote">"Finally a collar that doesn't die after three washes. The packaging alone felt like unboxing a watch."</blockquote>
+            <figcaption class="testimonial-author">SNEHA R. <span>// BANGALORE</span></figcaption>
+          </figure>
+          <figure class="testimonial-card glass-liquid-card">
+            <div class="testimonial-stars" aria-label="5 out of 5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="testimonial-quote">"Boxy where it should be, clean everywhere else. You can tell every seam was argued over. Worth every rupee."</blockquote>
+            <figcaption class="testimonial-author">KARAN D. <span>// DELHI</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION 5: VIP NEWSLETTER & STORE ACCESS -->
     <section class="section cta-section">
       <div class="section-container cta-container">
@@ -415,6 +497,13 @@
           </form>
           <div id="newsletterSuccess" class="newsletter-success">
             <i class="fa-solid fa-circle-check"></i> VIP Confirmation sent. Welcome to VIYACRAZE.
+          </div>
+
+          <div class="trust-strip" aria-label="Purchase assurances">
+            <span class="trust-item"><i class="fa-solid fa-lock"></i> Secure Checkout</span>
+            <span class="trust-item"><i class="fa-solid fa-mobile-screen-button"></i> UPI &middot; Cards &middot; NetBanking</span>
+            <span class="trust-item"><i class="fa-solid fa-truck-fast"></i> Ships Across India</span>
+            <span class="trust-item"><i class="fa-solid fa-gem"></i> Limited Production</span>
           </div>
         </div>
       </div>
@@ -440,10 +529,13 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
       <div class="lightbox-img-wrap">
-        <img id="lightboxImg" src="viyahero.jpeg" alt="VIYACRAZE Haute Couture Detail">
+        <img id="lightboxImg" src="viyahero-gold.jpeg" alt="VIYACRAZE Haute Couture Detail">
       </div>
+      <button class="lightbox-nav-btn lightbox-prev" id="lightboxPrev" aria-label="Previous Image"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="lightbox-nav-btn lightbox-next" id="lightboxNext" aria-label="Next Image"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="lightbox-caption-bar">
-        <span class="lightbox-caption-text" id="lightboxCaption">HERO // 00 - 3D Embossed Sleeve Identity</span>
+        <span class="lightbox-caption-text" id="lightboxCaption">HERO // 00 - Gold Embossed Sleeve Identity</span>
+        <span class="lightbox-counter" id="lightboxCounter">01 / 05</span>
         <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener" class="lightbox-store-cta">
           <span>Acquire Piece in Store</span>
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -451,6 +543,10 @@
       </div>
     </div>
   </div>
+
+  <!-- Scroll Progress + Back To Top -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <!-- Footer -->
   <footer class="footer">
@@ -482,7 +578,7 @@
           <ul>
             <li><a href="about.html#philosophy">Fabric Specs (240 GSM)</a></li>
             <li><a href="about.html#process">Crafting Process</a></li>
-            <li><a href="contact.html#faq">Sizing Guide</a></li>
+            <li><a href="contact.html#sizing">Sizing Guide</a></li>
             <li><a href="contact.html#support">VIP Support</a></li>
           </ul>
         </div>
@@ -501,9 +597,9 @@
       <div class="footer-bottom">
         <div class="copyright">© VIYACRAZE APPAREL GROUP. ALL RIGHTS RESERVED.</div>
         <div class="footer-legal">
-          <a href="#">PRIVACY POLICY</a>
-          <a href="#">TERMS OF SERVICE</a>
-          <a href="#">ACCESSIBILITY</a>
+          <a href="privacy.html">PRIVACY POLICY</a>
+          <a href="terms.html">TERMS OF SERVICE</a>
+          <a href="privacy.html#accessibility">ACCESSIBILITY</a>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Who We Are | VIYACRAZE — Architectural Luxury Apparel</title>
   <meta name="description" content="Discover the philosophy, origins, and textile engineering behind VIYACRAZE. Heavyweight 240 GSM garments crafted with geometric precision.">
+  <link rel="canonical" href="https://viyacraze.com/about.html">
   
   <!-- PWA & Mobile Web App Meta -->
   <link rel="icon" type="image/svg+xml" href="VIYA_logo_gold.svg">
@@ -19,14 +20,14 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Who We Are | VIYACRAZE">
   <meta property="og:description" content="We bring your vibe to life. Crafted in small batches with premium 240 GSM cotton and bold DTF prints.">
-  <meta property="og:image" content="viyahero.jpeg">
+  <meta property="og:image" content="viyahero-gold.jpeg">
   <meta property="og:url" content="https://viyacraze.com/about.html">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Who We Are | VIYACRAZE">
   <meta name="twitter:description" content="We bring your vibe to life. Crafted in small batches with premium 240 GSM cotton and bold DTF prints.">
-  <meta name="twitter:image" content="viyahero.jpeg">
+  <meta name="twitter:image" content="viyahero-gold.jpeg">
 
   <!-- Premium Luxury Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +41,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-about">
+
+  <!-- Announcement Bar -->
+  <div class="announce-bar" id="announceBar">
+    <span class="announce-text">DROP 01 LIVE &mdash; STRICTLY LIMITED PRODUCTION &mdash; <a href="https://viyacraze.mydukaan.io" target="_blank" rel="noopener">SHOP THE OFFICIAL STORE ↗</a><span class="announce-countdown" id="dropCountdown" hidden></span></span>
+  </div>
 
   <!-- Liquid Ambient Glow Mesh -->
   <div class="liquid-ambient-mesh" id="liquidMesh"></div>
@@ -137,7 +143,7 @@
       <div class="section-container origin-grid">
         <div class="origin-media">
           <div class="media-frame-gold glass-liquid-card">
-            <img src="viyahero.jpeg" alt="VIYA 3D Debossed Sleeve Craftsmanship" loading="lazy">
+            <img src="viyahero-gold.jpeg" alt="VIYA Gold Embossed Sleeve Craftsmanship" loading="lazy">
           </div>
           <div class="media-caption-tag">3D DEBOSSED SLEEVE EMBLEM // VIYA CRAFT</div>
         </div>
@@ -276,6 +282,13 @@
             </a>
             <a href="contact.html" class="btn-secondary-glass">Contact VIYA</a>
           </div>
+
+          <div class="trust-strip" aria-label="Purchase assurances">
+            <span class="trust-item"><i class="fa-solid fa-lock"></i> Secure Checkout</span>
+            <span class="trust-item"><i class="fa-solid fa-mobile-screen-button"></i> UPI &middot; Cards &middot; NetBanking</span>
+            <span class="trust-item"><i class="fa-solid fa-truck-fast"></i> Ships Across India</span>
+            <span class="trust-item"><i class="fa-solid fa-gem"></i> Limited Production</span>
+          </div>
         </div>
       </div>
     </section>
@@ -292,6 +305,10 @@
       <i class="fa-solid fa-arrow-up-right-from-square"></i>
     </a>
   </div>
+
+  <!-- Scroll Progress + Back To Top -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
   <!-- Footer -->
   <footer class="footer">
@@ -323,7 +340,7 @@
           <ul>
             <li><a href="about.html#philosophy">Fabric Specs (240 GSM)</a></li>
             <li><a href="about.html#process">Crafting Process</a></li>
-            <li><a href="contact.html#faq">Sizing Guide</a></li>
+            <li><a href="contact.html#sizing">Sizing Guide</a></li>
             <li><a href="contact.html#support">VIP Support</a></li>
           </ul>
         </div>
@@ -342,9 +359,9 @@
       <div class="footer-bottom">
         <div class="copyright">© VIYACRAZE APPAREL GROUP. ALL RIGHTS RESERVED.</div>
         <div class="footer-legal">
-          <a href="#">PRIVACY POLICY</a>
-          <a href="#">TERMS OF SERVICE</a>
-          <a href="#">ACCESSIBILITY</a>
+          <a href="privacy.html">PRIVACY POLICY</a>
+          <a href="terms.html">TERMS OF SERVICE</a>
+          <a href="privacy.html#accessibility">ACCESSIBILITY</a>
         </div>
       </div>
     </div>
