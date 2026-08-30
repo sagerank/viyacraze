@@ -11,7 +11,7 @@
   const FRAME_DIR = 'frames/';
   const FRAME_PREFIX = 'frame_';
   const FRAME_EXT = '.webp';
-  const HERO_IMAGE_SRC = 'viyahero.jpeg';
+  const HERO_IMAGE_SRC = 'viyahero-gold.jpeg';
 
   const padIndex = (num) => String(num).padStart(4, '0');
 
@@ -173,7 +173,7 @@
 
   function onAllAssetsLoaded() {
     state.isLoaded = true;
-    if (loadingStatusText) loadingStatusText.textContent = 'ATELIER SEQUENCE INITIALIZED';
+    if (loadingStatusText) loadingStatusText.textContent = 'VIYA SEQUENCE INITIALIZED';
 
     setTimeout(() => {
       document.body.classList.remove('is-loading');
@@ -351,7 +351,7 @@
     }
   });
 
-  // --- 7. Atelier Contact Form Handler ---
+  // --- 7. Contact Form Handler ---
   window.handleContactSubmit = function (e) {
     e.preventDefault();
     const successBox = document.getElementById('contactSuccessMsg');
@@ -405,7 +405,7 @@
       const img = item.querySelector('img');
       const caption = item.querySelector('.mosaic-caption');
       if (img) {
-        const captionText = caption ? caption.textContent.trim() : 'VIYACRAZE Atelier Editorial';
+        const captionText = caption ? caption.textContent.trim() : 'VIYACRAZE Official Editorial';
         openLightbox(img.src, captionText);
       }
     });
